@@ -10,14 +10,12 @@ import java.util.concurrent.Semaphore;
 public class Main {
 
     public static final int nPosti = 5;
-    public static Auto[] autos;
-    public static int nextFreeSlot = 0;
 
     public static void main(String[] args) {
-        autos = new Auto[nPosti];
+        Semaphore s = new Semaphore(nPosti);
 
-        for(int i = 0; i < 10; ++i) {
-            new Thread(new Auto()).start();
+        for(int i = 0; i < 20; ++i) {
+            new Thread(new Auto(s)).start();
         }
 
     }
